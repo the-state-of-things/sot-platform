@@ -6,7 +6,8 @@ const app = express();
 
 const mongoose = require('mongoose');
 
-require('dotenv/config');
+const dotenv = require('dotenv');
+dotenv.config();
 
 //Middleware
 app.use(bodyParser.json());
