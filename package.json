@@ -23,13 +23,17 @@
   "dependencies": {
     "body-parser": "^1.18.3",
     "cors": "^2.8.5",
+    "dotenv": "^7.0.0",
     "express": "^4.16.4",
     "mongodb": "^3.2.2",
-    "mongoose": "^5.4.20",
-    "dotenv": "^7.0.0"
+    "mongoose": "^5.4.20"
   },
   "devDependencies": {
     "nodemon": "^1.18.10",
-    "typescript": "^3.4.1"
+    "typescript": "^3.4.1",
+    "@types/chai": "^4.1.0",
+    "@types/mocha": "^5.2.4",
+    "@types/webpack-env": "^1.13.9",
+    "chai": "^4.1.2"
   }
 }
