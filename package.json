@@ -6,9 +6,27 @@
   "scripts": {
     "start": "node server/index.js",
     "dev": "nodemon server/index.js",
-    "postinstall": "npm run buildall",
-    "build": "tsc",
-    "buildall": "npm run build && cd client && npm run build && cd .."
+    "postinstall": "npm run build",
+    "build-server": "tsc",
+    "build": "npm run build-server && npm run build-client",
+    "serve": "cd client && vue-cli-service serve && cd ..",
+    "build-client": "vue-cli-service build client/src/main.ts",
+    "lint-client": "vue-cli-service lint client/src/main.ts",
+    "test:e2e": "vue-cli-service test:e2e client/src/main.ts",
+    "test:unit": "vue-cli-service test:unit client/src/main.ts"
+  },
+  "gitHooks": {
+    "pre-commit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.ts": [
+      "vue-cli-service lint client/src/main.ts",
+      "git add"
+    ],
+    "*.vue": [
+      "vue-cli-service lint client/src/main.ts",
+      "git add"
+    ]
   },
   "repository": {
     "type": "git",
@@ -35,8 +53,7 @@
     "vue-router": "^3.0.1"
   },
   "devDependencies": {
-    "nodemon": "^1.18.10",
-    "typescript": "^3.4.1",
+    "@babel/plugin-syntax-dynamic-import": "^7.2.0",
     "@types/chai": "^4.1.0",
     "@types/mocha": "^5.2.4",
     "@types/webpack-env": "^1.13.9",
@@ -49,8 +66,10 @@
     "chai": "^4.1.2",
     "fibers": "^3.1.1",
     "lint-staged": "^8.1.0",
+    "nodemon": "^1.18.10",
     "sass": "^1.17.2",
     "sass-loader": "^7.1.0",
+    "typescript": "^3.4.1",
     "vue-template-compiler": "^2.5.21"
   }
 }

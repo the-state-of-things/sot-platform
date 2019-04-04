@@ -18,7 +18,7 @@
     ],
     "paths": {
       "@/*": [
-        "src/*"
+        "client/src/*"
       ]
     },
     "lib": [
@@ -36,6 +36,7 @@
     "client/tests/**/*.tsx"
   ],
   "exclude": [
+    "../node_modules",
     "node_modules"
   ]
 }
