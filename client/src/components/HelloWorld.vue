@@ -14,7 +14,7 @@ export default class HelloWorld extends Vue {
   private posts: string = '';
   private error: string = '';
 
-  async created() {
+  public async created(): Promise<void> {
     try {
       this.posts = await PostService.getPosts();
     } catch (err) {

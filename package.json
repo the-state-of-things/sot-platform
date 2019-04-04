@@ -6,7 +6,9 @@
   "scripts": {
     "start": "node server/index.js",
     "dev": "nodemon server/index.js",
-    "postinstall": "cd client && npm run build && cd .."
+    "postinstall": "npm run buildall",
+    "build": "tsc",
+    "buildall": "npm run build && cd client && npm run build && cd .."
   },
   "repository": {
     "type": "git",
@@ -27,6 +29,7 @@
     "dotenv": "^7.0.0"
   },
   "devDependencies": {
-    "nodemon": "^1.18.10"
+    "nodemon": "^1.18.10",
+    "typescript": "^3.4.1"
   }
 }
