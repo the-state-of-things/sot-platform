@@ -54,8 +54,13 @@
   },
   "devDependencies": {
     "@babel/plugin-syntax-dynamic-import": "^7.2.0",
+    "@types/body-parser": "^1.17.0",
     "@types/chai": "^4.1.0",
+    "@types/cors": "^2.8.5",
+    "@types/dotenv": "^6.1.1",
+    "@types/express": "^4.16.1",
     "@types/mocha": "^5.2.4",
+    "@types/mongoose": "^5.3.27",
     "@types/webpack-env": "^1.13.9",
     "@vue/cli-plugin-babel": "^3.5.0",
     "@vue/cli-plugin-e2e-cypress": "^3.5.0",
