@@ -9,16 +9,16 @@
 // const webpack = require('@cypress/webpack-preprocessor')
 
 module.exports = (on, config) => {
-  // on('file:preprocessor', webpack({
-  //  webpackOptions: require('@vue/cli-service/webpack.config'),
-  //  watchOptions: {}
-  // }))
+    // on('file:preprocessor', webpack({
+    //  webpackOptions: require('@vue/cli-service/webpack.config'),
+    //  watchOptions: {}
+    // }))
 
-  return Object.assign({}, config, {
-    fixturesFolder: 'client/tests/e2e/fixtures',
-    integrationFolder: 'client/tests/e2e/specs',
-    screenshotsFolder: 'client/tests/e2e/screenshots',
-    videosFolder: 'client/tests/e2e/videos',
-    supportFile: 'client/tests/e2e/support/index.js'
-  })
+    return Object.assign({}, config, {
+        fixturesFolder: 'client/tests/e2e/fixtures',
+        integrationFolder: 'client/tests/e2e/specs',
+        screenshotsFolder: 'client/tests/e2e/screenshots',
+        videosFolder: 'client/tests/e2e/videos',
+        supportFile: 'client/tests/e2e/support/index.js'
+    })
 }

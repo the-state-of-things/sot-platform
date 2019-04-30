@@ -15,11 +15,11 @@ export default class HelloWorld extends Vue {
   private error: string = '';
 
   public async created(): Promise<void> {
-    try {
-      this.posts = await PostService.getPosts();
-    } catch (err) {
-      this.error = err.message;
-    }
+      try {
+          this.posts = await PostService.getPosts();
+      } catch (err) {
+          this.error = err.message;
+      }
   }
 }
 </script>

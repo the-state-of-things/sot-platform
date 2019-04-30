@@ -1,13 +1,13 @@
-import Vue, { VNode } from 'vue';
+// Lint doesn't pick up the fact that Vue and VNode are used as interface supertypes, so disable lines
+import Vue from 'vue' /* eslint-disable-line @typescript-eslint/no-unused-vars */
+import { VNode } from 'vue'; /* eslint-disable-line @typescript-eslint/no-unused-vars */
 
 declare global {
-  namespace JSX {
-    // tslint:disable no-empty-interface
-    interface Element extends VNode {}
-    // tslint:disable no-empty-interface
-    interface ElementClass extends Vue {}
-    interface IntrinsicElements {
-      [elem: string]: any;
+    namespace JSX {
+        interface Element extends VNode {}
+        interface ElementClass extends Vue {}
+        interface IntrinsicElements {
+            [elem: string]: any;
+        }
     }
-  }
 }

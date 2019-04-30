@@ -5,14 +5,14 @@ import User from '../models/user';
 
 const router = express.Router();
 
-router.get('/', (req, res) => {
+router.get('/', (req, res): void => {
     const user = new User({
         _id: new mongoose.Types.ObjectId(),
         email: 'lmcs97@gmail.com',
         firstName: 'Louis',
         lastName: 'Slater',
     });
-    user.save().catch((err: Error) => {
+    user.save().catch((err: Error): void => {
         console.error(err); // TODO: No console.error on live app?
     });
     res.send('Hello'); // TODO: Remove this?
