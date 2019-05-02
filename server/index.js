@@ -10,6 +10,7 @@ dotenv.config();
 app.use(bodyParser.json());
 app.use(cors());
 const dbString = process.env.DB_STRING ? process.env.DB_STRING : '';
+//TODO: Can we only allow db access from server? will we then have to pay for another server?
 mongoose.connect(dbString, { useNewUrlParser: true }).catch((err) => console.error(err));
 app.use('/posts', posts);
 // if (process.env.NODE_ENV === 'production') {

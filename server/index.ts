@@ -15,7 +15,7 @@ app.use(bodyParser.json());
 app.use(cors());
 
 const dbString: string = process.env.DB_STRING ? process.env.DB_STRING : '';
-
+//TODO: Can we only allow db access from server? will we then have to pay for another server?
 mongoose.connect(dbString, { useNewUrlParser: true }).catch((err: Error): void => console.error(err));
 
 app.use('/posts', posts);

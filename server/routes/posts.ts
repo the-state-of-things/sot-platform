@@ -5,7 +5,7 @@ import User from '../models/user';
 
 const router = express.Router();
 
-router.get('/', (req, res): void => {
+router.get('/', (): void => {
     const user = new User({
         _id: new mongoose.Types.ObjectId(),
         email: 'lmcs97@gmail.com',
@@ -14,8 +14,8 @@ router.get('/', (req, res): void => {
     });
     user.save().catch((err: Error): void => {
         console.error(err); // TODO: No console.error on live app?
+        //TODO: Error handling + logging
     });
-    res.send('Hello'); // TODO: Remove this?
 });
 
 export default router;

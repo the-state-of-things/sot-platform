@@ -2,7 +2,7 @@ import express from 'express';
 import mongoose from 'mongoose';
 import User from '../models/user';
 const router = express.Router();
-router.get('/', (req, res) => {
+router.get('/', () => {
     const user = new User({
         _id: new mongoose.Types.ObjectId(),
         email: 'lmcs97@gmail.com',
@@ -11,8 +11,8 @@ router.get('/', (req, res) => {
     });
     user.save().catch((err) => {
         console.error(err); // TODO: No console.error on live app?
+        //TODO: Error handling + logging
     });
-    res.send('Hello'); // TODO: Remove this?
 });
 export default router;
 //# sourceMappingURL=posts.js.map
