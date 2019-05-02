@@ -20,6 +20,7 @@
   "dependencies": {
     "@babel/core": "^7.4.4",
     "@babel/register": "^7.4.4",
+    "@vue/babel-preset-app": "^3.7.0",
     "axios": "^0.18.0",
     "babel-preset-env": "^1.7.0",
     "body-parser": "^1.18.3",
