@@ -2,50 +2,23 @@
   "name": "sot-platform",
   "version": "1.0.0",
   "description": "The State of Things main repository.",
-  "main": "index.js",
-  "scripts": {
-    "start": "babel-node server/index.js",
-    "dev": "nodemon --exec babel-node server/index.js",
-    "postinstall": "npm run build",
-    "build-server": "tsc",
-    "build": "npm run build-server && npm run build-client",
-    "serve": "cd client && vue-cli-service serve && cd ..",
-    "build-client": "vue-cli-service build client/src/main.ts",
-    "lint-client": "vue-cli-service lint client/src/main.ts",
-    "test:e2e": "vue-cli-service test:e2e client/src/main.ts",
-    "test:unit": "vue-cli-service test:unit client/src/main.ts",
-    "lint": "tsc --noEmit && eslint */**/*.{js,ts,vue} --fix"
-  },
-  "gitHooks": {
-    "pre-commit": "npm run lint"
-  },
-  "lint-staged": {
-    "*.ts": [
-      "vue-cli-service lint client/src/main.ts",
-      "git add"
-    ],
-    "*.vue": [
-      "vue-cli-service lint client/src/main.ts",
-      "git add"
-    ]
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/the-state-of-things/sot-platform.git"
-  },
   "author": "Louis Slater",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/the-state-of-things/sot-platform/issues"
+  "scripts": {
+    "serve": "cd client && vue-cli-service serve && cd ..",
+    "build": "npm run build-server && npm run build-client",
+    "lint": "tsc --noEmit && eslint */**/*.{js,ts,vue} --fix",
+    "build-client": "vue-cli-service build client/src/main.ts",
+    "build-server": "tsc",
+    "dev": "nodemon config.js",
+    "lint-client": "vue-cli-service lint client/src/main.ts",
+    "postinstall": "npm run build",
+    "start": "node config.js",
+    "test:e2e": "vue-cli-service test:e2e client/src/main.ts",
+    "test:unit": "vue-cli-service test:unit client/src/main.ts"
   },
-  "homepage": "https://github.com/the-state-of-things/sot-platform#readme",
+  "main": "index.js",
   "dependencies": {
-    "@babel/cli": "^7.4.4",
-    "@babel/core": "^7.4.4",
-    "@babel/node": "^7.2.2",
-    "@babel/preset-env": "^7.4.4",
     "axios": "^0.18.0",
-    "babel-cli": "^6.26.0",
     "body-parser": "^1.18.3",
     "core-js": "^2.6.5",
     "cors": "^2.8.5",
@@ -59,6 +32,8 @@
     "vue-router": "^3.0.1"
   },
   "devDependencies": {
+    "@babel/core": "^7.4.4",
+    "@babel/register": "^7.4.4",
     "@types/body-parser": "^1.17.0",
     "@types/chai": "^4.1.0",
     "@types/cors": "^2.8.5",
@@ -69,12 +44,13 @@
     "@types/webpack-env": "^1.13.9",
     "@typescript-eslint/eslint-plugin": "^1.7.0",
     "@typescript-eslint/parser": "^1.7.0",
-    "@vue/cli-plugin-babel": "^3.5.0",
+    "@vue/cli-plugin-babel": "^3.7.0",
     "@vue/cli-plugin-e2e-cypress": "^3.5.0",
     "@vue/cli-plugin-typescript": "^3.5.0",
     "@vue/cli-plugin-unit-mocha": "^3.5.0",
     "@vue/cli-service": "^3.7.0",
     "@vue/test-utils": "1.0.0-beta.29",
+    "babel-preset-env": "^1.7.0",
     "chai": "^4.1.2",
     "eslint": "^5.16.0",
     "eslint-plugin-vue": "^5.2.2",
@@ -84,5 +60,27 @@
     "sass-loader": "^7.1.0",
     "typescript": "^3.4.1",
     "vue-template-compiler": "^2.5.21"
+  },
+  "bugs": {
+    "url": "https://github.com/the-state-of-things/sot-platform/issues"
+  },
+  "gitHooks": {
+    "pre-commit": "npm run lint"
+  },
+  "homepage": "https://github.com/the-state-of-things/sot-platform#readme",
+  "license": "ISC",
+  "lint-staged": {
+    "*.ts": [
+      "vue-cli-service lint client/src/main.ts",
+      "git add"
+    ],
+    "*.vue": [
+      "vue-cli-service lint client/src/main.ts",
+      "git add"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/the-state-of-things/sot-platform.git"
   }
 }
