@@ -26,7 +26,7 @@ export default class NavBar extends Vue {}
 <style scoped lang="scss">
 .nav-bar-links {
     float: right;
-    color: darkslategrey
+    color: white;
 }
 .nav-bar {
     background-color: darkslategrey

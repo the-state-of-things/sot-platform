@@ -9,7 +9,7 @@
     "lint": "tsc --noEmit && eslint */**/*.{js,ts,vue} --fix",
     "build-client": "vue-cli-service build client/src/main.ts",
     "build-server": "tsc",
-    "dev": "nodemon config.js",
+    "dev": "tsc-watch --onSuccess \"nodemon -e vue config.js\" --noClear",
     "lint-client": "vue-cli-service lint client/src/main.ts",
     "postinstall": "npm run build",
     "start": "node config.js",
@@ -60,6 +60,7 @@
     "nodemon": "^1.18.10",
     "sass": "^1.17.2",
     "sass-loader": "^7.1.0",
+    "tsc-watch": "^2.1.2",
     "typescript": "^3.4.1",
     "vue-template-compiler": "^2.5.21"
   },
