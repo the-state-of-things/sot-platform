@@ -1,19 +1,21 @@
 module.exports = {
-    extends: [
-        'plugin:@typescript-eslint/recommended', // Uses the recommended rules from the @typescript-eslint/eslint-plugin
-        'plugin:vue/recommended',
-    ],
+    parser: 'vue-eslint-parser',
+    root: true,
+    env: {
+        node: true,
+        es6: true,
+        browser: true,
+        commonjs: true
+    },
+    extends: ['plugin:@typescript-eslint/recommended', 'eslint:recommended', 'plugin:vue/essential', '@vue/typescript'],
     parserOptions: {
-        parser: '@typescript-eslint/parser', // Specifies the ESLint parser
-        ecmaVersion: 2018, // Allows for the parsing of modern ECMAScript features
-        sourceType: 'module', // Allows for the use of imports
+        parser: '@typescript-eslint/parser'
     },
     rules: {
-        'no-console': ['error', { allow: ['error', 'info'] }],
-        'indent': ['error', 4],
-        'valid-jsdoc': ['error'],
-        '@typescript-eslint/no-empty-interface': 'off',
+        'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+        'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+        '@typescript-eslint/no-unused-vars': ['error', { args: 'none' }],
         '@typescript-eslint/no-explicit-any': 'off',
-        //'@typescript-eslint/no-unused-vars': ['error', { "args": "none" }],
-    },
+        '@typescript-eslint/no-empty-interface': 'off'
+    }
 };

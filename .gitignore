@@ -1,21 +1,20 @@
-/server/public
-.vscode
+.DS_Store
 node_modules
-.env
+/server-prod/
 
-/client/.DS_Store
+/server/public/
 
-/client/tests/e2e/videos/
-/client/tests/e2e/screenshots/
+/tests/e2e/videos/
+/tests/e2e/screenshots/
 
 # local env files
-/client/.env.local
-/client/.env.*.local
+.env.local
+.env.*.local
 
 # Log files
-/client/npm-debug.log*
-/client/yarn-debug.log*
-/client/yarn-error.log*
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 
 # Editor directories and files
 .idea
@@ -24,8 +23,4 @@ node_modules
 *.ntvs*
 *.njsproj
 *.sln
-*.sw*
-
-# Transpiled js files
-/client/src/**/*.js
-/client/src/**/*.js.map
+*.sw?
