@@ -1,9 +1,6 @@
 var Router = require('express').Router;
 var router = Router();
 import { Request, Response, NextFunction } from 'express';
-import { text } from 'body-parser';
-import { COPYFILE_FICLONE } from 'constants';
-import { Resize } from 'vuetify/es5/directives';
 
 
 router.get('/test', function(
