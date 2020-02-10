@@ -1,30 +1,23 @@
 <template>
   <v-layout>
-      <v-layout>
             <v-flex xs12 sm6 offset-sm3>
-            <v-card>
-                <component v-bind:is="childType" v-bind:pageBody="pageBody"></component>
-                <v-card-actions>
-                    <v-btn background-color="#00aeef" :to="getNextPath()">Next</v-btn>
-                </v-card-actions>
-            </v-card>
+                <v-card>
+                    <PageElement v-for="elementBody in pageBody.elements" v-bind:key="elementBody.title" v-bind:elementBody="elementBody"></PageElement>
+                    <v-card-actions>
+                        <v-btn background-color="#00aeef" :to="getNextPath()">Next</v-btn>
+                    </v-card-actions>
+                </v-card>
             </v-flex>
-        </v-layout>
-        
   </v-layout>
 </template>
 
 <script lang="ts">
 import axios from 'axios';
 import { Component, Vue } from 'vue-property-decorator';
-import TextView from './../components/TextView.vue';
-import ImageView from './../components/ImageView.vue';
-import VideoView from './../components/VideoView.vue';
+import PageElement from './../components/PageElement.vue';
 @Component({
     components: {
-        'TextView': TextView,
-        'ImageView': ImageView,
-        'VideoView': VideoView
+        'PageElement': PageElement
     }
 })
 class App extends Vue {
@@ -61,26 +54,10 @@ class App extends Vue {
         return this.pageBody;
     }
 
-    determineChildType(type: string): string {
-        switch (type) {
-            case 'text':
-                return 'TextView';
-            case 'image':
-                return 'ImageView';
-            case 'video':
-                return 'VideoView';
-            default:
-                return '';
-                //Throw error
-        }
-    }
-
     setPageContent(courseData: any): void { //TODO: Change type
         this.setPageNumber(parseInt(this.$route.params.page));
         this.setPageBody(courseData.body);
         this.setTotalPages(courseData.pages);
-        const childType = this.determineChildType(this.getPageBody().type);
-        this.setChildType(childType);
     }
 
     mounted() {
@@ -90,6 +67,7 @@ class App extends Vue {
             .get(url)
             .then(response => {
                 this.setPageContent(response.data);
+                console.log('elele', this.pageBody);
             })
             .catch(err => {
                 console.error(err);

@@ -12,7 +12,7 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 @Component({})
 class App extends Vue {
     @Prop({default: {}})
-    pageBody: any //TODO: Remove explicit any
+    elementBody: any //TODO: Remove explicit any
     title: string = '';
     text: string = '';
     
@@ -24,8 +24,8 @@ class App extends Vue {
         this.text = text;
     }
 
-    getPageBody(): any {
-        return this.pageBody;
+    getElementBody(): any {
+        return this.elementBody;
     }
 
     getTitle(): string {
@@ -37,9 +37,9 @@ class App extends Vue {
     }
 
     mounted() {
-        const pageBody = this.getPageBody();
-        this.setTitle(pageBody.title);
-        this.setText(pageBody.text);
+        const elementBody = this.getElementBody();
+        this.setTitle(elementBody.title);
+        this.setText(elementBody.text);
     }
 }
 export default App;
