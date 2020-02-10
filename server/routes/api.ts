@@ -38,9 +38,10 @@ router.get('/course/:id/:page', function(
             text: 'The State of Things video'
         }
     ];
-    let ret = {};
-    ret['body'] = content[parseInt(req.params.page) - 1];
-    ret['pages'] = content.length;
+    let ret = {
+        body: content[parseInt(req.params.page) - 1],
+        pages: content.length
+    };
     res.json(ret);
 });
 
