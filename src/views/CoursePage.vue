@@ -67,7 +67,6 @@ class App extends Vue {
             .get(url)
             .then(response => {
                 this.setPageContent(response.data);
-                console.log('elele', this.pageBody);
             })
             .catch(err => {
                 console.error(err);

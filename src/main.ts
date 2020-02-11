@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import './plugins/vuetify';
+import './plugins/vmodal';
 import App from './App.vue';
 import router from './router';
 import { VNode } from 'vue';

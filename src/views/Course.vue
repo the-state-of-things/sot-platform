@@ -14,7 +14,7 @@
         </v-card-title>
 
         <v-card-actions>
-          <v-btn background-color="#00aeef" :to="getFirstPageUrl()">Start Course</v-btn>
+          <v-btn style="background-color: '#00aeef'" :to="getFirstPageUrl()">Start Course</v-btn>
         </v-card-actions>
       </v-card>
     </v-flex>

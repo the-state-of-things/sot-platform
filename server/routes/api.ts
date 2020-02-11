@@ -11,6 +11,24 @@ router.get('/test', function(
     res.send('Hello Typescript API');
 });
 
+router.get('/course/:id/edit', function(
+    _req: Request,
+    res: Response,
+    next: NextFunction
+): void {
+    const ret = {
+        pages: [
+            {
+                title: 'P1'
+            },
+            {
+                title: 'PAGETOO'
+            }
+        ]
+    };
+    res.json(ret);
+});
+
 router.get('/course/:id/:page', function(
     req: Request,
     res: Response,
@@ -64,6 +82,8 @@ router.get('/course/:id', function(
     res.json(ret);
 });
 
+
+
 router.get('/courses', function(
     _req: Request,
     res: Response,
@@ -75,6 +95,21 @@ router.get('/courses', function(
             title: 'The Politics of Your Coffee',
             description: 'A course about coffee.',
             progress: '0%',
+        }
+    ];
+    res.json(ret);
+});
+
+router.get('/edit-courses', function(
+    _req: Request,
+    res: Response,
+    next: NextFunction
+): void {
+    const ret = [
+        {
+            id: 'coffee',
+            title: 'The Politics of Your Coffee',
+            description: 'A course about coffee.'
         }
     ];
     res.json(ret);

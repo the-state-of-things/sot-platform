@@ -1,13 +1,15 @@
 <template>
+    <div>
     <v-data-table :headers="getTableHeaders()" :items="courses">
         <template v-slot:items="props">
             <router-link tag="tr" :to="getCoursePath(props.item.id)">
                 <td>{{ props.item.title }}</td>
                 <td>{{ props.item.description }}</td>
-                <td>{{ props.item.progress }}</td>
             </router-link>
         </template>
     </v-data-table>
+    <v-btn background-color="#00aeef" to="/create-course">Create Course</v-btn>
+    </div>
 </template>
 
 <script lang="ts">
@@ -18,16 +20,12 @@ class App extends Vue {
     courses: object[] = [];
     tableHeaders: object[] = [
         {
-            text: 'Course',
-            value: 'id'
-        },
-        {
-            text: 'Description',
+            text: 'Title',
             value: 'title'
         },
         {
-            text: 'Progress',
-            value: 'progress'
+            text: 'Description',
+            value: 'description'
         }
     ];
     getCoursePath(id: string): string {
@@ -44,7 +42,7 @@ class App extends Vue {
     }
     mounted() {
         const url =
-            'http://api.' + process.env.VUE_APP_SERVER_DOMAIN + '/courses';
+            'http://api.' + process.env.VUE_APP_SERVER_DOMAIN + '/edit-courses';
         axios
             .get(url)
             .then(response => {
