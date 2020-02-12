@@ -16,7 +16,8 @@ app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(subdomain('api', apiRouter));
+app.use('/api', apiRouter);
+//app.use(subdomain('api', apiRouter));
 app.use(express.static(path.join(__dirname, '/public/')));
 
 app.get(/.*/, (_req: Request, res: Response): void =>
