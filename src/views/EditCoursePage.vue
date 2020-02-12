@@ -1,15 +1,21 @@
 <template>
     <div>
-        <draggable :list="pages" class="list-group" handle=".handle">
-            <div style="height: 50px;" class="list-group-item" v-for="(page, index) in pages" :key="page.title">
-                <v-btn style="width: 50%; text-align: left;" class="handle">{{ page.title }} </v-btn>
-                <v-btn style="color: #00aeef; background-color: white; float: right;" @click="deletePage(index + 1)"><v-icon>delete</v-icon></v-btn>
-                <v-btn style="color: #00aeef; background-color: white; float: right;" :to="getEditPageURL(index + 1)"><v-icon>edit</v-icon></v-btn>
+        <div style="margin: 10px;">
+            <v-text-field v-model="title" label="Course Title" style="font-size: 28px;"></v-text-field>
+        </div>
+        <v-card-title>
+            Elements
+        </v-card-title>
+        <draggable :list="elements" class="list-group" handle=".handle">
+            <div style="height: 50px;" class="list-group-item" v-for="(element, index) in elements" :key="element.title">
+                <v-btn style="width: 50%; text-align: left;" class="handle">{{ element.title }} </v-btn>
+                <v-btn style="color: #00aeef; background-color: white; float: right;" @click="deleteElement(index + 1)"><v-icon>delete</v-icon></v-btn>
+                <v-btn style="color: #00aeef; background-color: white; float: right;" :to="getEditElementURL(index + 1)"><v-icon>edit</v-icon></v-btn>
             </div>
         </draggable>
-        <v-btn style="background-color: #00aeef; color: white; float: right;" @click="addPage()">Add Page</v-btn>
-        <v-btn style="background-color: #00aeef; color: white; float: right;" @click="savePages()">Save Changes</v-btn>
-        <AddPageModal @createPage="createPage"></AddPageModal>
+        <v-btn style="background-color: #00aeef; color: white; float: right;" @click="addElement()">Add Element</v-btn>
+        <v-btn style="background-color: #00aeef; color: white; float: right;" @click="saveElements()">Save Changes</v-btn>
+        <AddElementModal @createElement="createElement"></AddElementModal>
     </div>
 </template>
 <style scoped>
@@ -20,57 +26,77 @@
 <script lang="ts">
 import axios from 'axios';
 import draggable from 'vuedraggable';
-import AddPageModal from './../components/AddPageModal.vue';
+import AddElementModal from './../components/AddElementModal.vue';
 import { Component, Vue } from 'vue-property-decorator';
 @Component({
     components: {
-        'AddPageModal': AddPageModal,
+        'AddElementModal': AddElementModal,
         'draggable': draggable
     }
 })
 class App extends Vue {
-    pages: object[] = [
+    title: string = '';
+    elements: object[] = [
         {
-            title: 'TITLE'
+            type: '',
+            title: 'TITLE',
+            text: ''
         }
     ];
 
-    createPage(pageTitle: string) {
-        const newPage = {
-            title: pageTitle
+    createElement(elementInfo: any) {
+        const newElement: any = {
+            type: elementInfo.type,
+            title: elementInfo.title,
+            text: ''
         };
-        this.pages.push(newPage);
-        this.savePages();
+        switch(newElement.type) {
+            case 'text':
+                //Do nothing
+                break;
+            case 'image':
+            case 'video':
+                newElement.url = '';
+                break;
+            default:
+                // code block
+        }
+        this.elements.push(newElement);
+        this.saveElements();
     }
 
-    addPage() {
-        this.$modal.show('add-page-modal');
+    addElement() {
+        this.$modal.show('add-element-modal');
     }
 
-    savePages() {
-        console.log('SAVE');
+    saveElements() {
+        console.log('SAVE ELEMENT');
     }
 
-    deletePage(pageIndex: number) {
-        console.log('DELETE');
+    deleteElement(elementIndex: number) {
+        console.log('DELETE ELEMENT');
     }
 
-    getEditPageURL(pageIndex: number) {
-        return '/course/' + this.$route.params.id + '/' + pageIndex + '/edit'
+    getEditElementURL(elementIndex: number) {
+        return '/course/' + this.$route.params.id + '/' + this.$route.params.page + '/' + elementIndex + '/edit'
     }
 
-    setPages(courseData: any): void {
-        console.log(courseData);
-        this.pages = courseData.pages;
+    setElements(pageData: any): void {
+        this.elements = pageData.elements;
+    }
+
+    setPageInfo(pageInfo: any): void {
+        this.title = pageInfo.title;
+        this.elements = pageInfo.elements;
     }
 
     mounted() {
         const url =
-            'http://api.' + process.env.VUE_APP_SERVER_DOMAIN + '/course/' + this.$route.params.id + '/edit';
+            'http://api.' + process.env.VUE_APP_SERVER_DOMAIN + '/course/' + this.$route.params.id + '/' + this.$route.params.page + '/edit';
         axios
             .get(url)
             .then(response => {
-                this.setPages(response.data);
+                this.setPageInfo(response.data);
             })
             .catch(err => {
                 console.error(err);

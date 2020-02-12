@@ -1,5 +1,11 @@
 <template>
     <div>
+        <div style="margin: 10px;">
+            <v-text-field v-model="title" label="Course Title" style="font-size: 28px;"></v-text-field>
+            <v-text-field v-model="description" label="Course Description" filled></v-text-field>
+            <v-text-field v-model="image" label="Course Image URL" filled></v-text-field>
+            <v-text-field v-model="completeText" label="Course Completed Text" filled></v-text-field>
+        </div>
         <draggable :list="pages" class="list-group" handle=".handle">
             <div style="height: 50px;" class="list-group-item" v-for="(page, index) in pages" :key="page.title">
                 <v-btn style="width: 50%; text-align: left;" class="handle">{{ page.title }} </v-btn>
@@ -29,6 +35,10 @@ import { Component, Vue } from 'vue-property-decorator';
     }
 })
 class App extends Vue {
+    title: string = '';
+    description: string = '';
+    completeText: string = '';
+    image: string = '';
     pages: object[] = [
         {
             title: 'TITLE'
@@ -59,9 +69,12 @@ class App extends Vue {
         return '/course/' + this.$route.params.id + '/' + pageIndex + '/edit'
     }
 
-    setPages(courseData: any): void {
-        console.log(courseData);
-        this.pages = courseData.pages;
+    setCourseInfo(courseInfo: any): void {
+        this.title = courseInfo.title;
+        this.description = courseInfo.description;
+        this.completeText = courseInfo.completeText;
+        this.image = courseInfo.image;
+        this.pages = courseInfo.pages;
     }
 
     mounted() {
@@ -70,7 +83,7 @@ class App extends Vue {
         axios
             .get(url)
             .then(response => {
-                this.setPages(response.data);
+                this.setCourseInfo(response.data);
             })
             .catch(err => {
                 console.error(err);

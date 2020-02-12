@@ -9,7 +9,7 @@
             </v-card-text>
             <v-card-actions>
                 <v-btn style="background-color: #00aeef; color: white;" @click="createPage()">Create Page</v-btn>
-                <v-btn style="background-color: #00aeef; color: white;" @click="this.$modal.hide('add-page-modal')">Close</v-btn>
+                <v-btn style="background-color: #00aeef; color: white;" @click="closeModal()">Close</v-btn>
             </v-card-actions>
         </v-card>
     </modal>
@@ -26,6 +26,10 @@ class App extends Vue {
 
     createPage() {
         this.$emit('createPage', this.pageTitle);
+        this.closeModal();
+    }
+
+    closeModal() {
         this.$modal.hide('add-page-modal');
     }
 }

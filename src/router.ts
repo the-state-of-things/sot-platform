@@ -34,6 +34,16 @@ export default new Router({
             component: (): Promise<any> => import('./views/EditCourse.vue') //TODO: Make this type more specific //Lazy load component
         },
         {
+            path: '/course/:id/:page/edit',
+            name: 'Edit Course Page',
+            component: (): Promise<any> => import('./views/EditCoursePage.vue') //TODO: Make this type more specific //Lazy load component
+        },
+        {
+            path: '/course/:id/:page/:element/edit',
+            name: 'Edit Page Element',
+            component: (): Promise<any> => import('./views/EditPageElement.vue') //TODO: Make this type more specific //Lazy load component
+        },
+        {
             path: '/course/:id/:page',
             name: 'Course Page',
             component: CoursePage
