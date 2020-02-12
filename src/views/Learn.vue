@@ -44,7 +44,7 @@ class App extends Vue {
     }
     mounted() {
         const url =
-            'http://' + process.env.VUE_APP_SERVER_DOMAIN + '/api/courses';
+            process.env.VUE_APP_SERVER_DOMAIN + '/api/courses';
         axios
             .get(url)
             .then(response => {
