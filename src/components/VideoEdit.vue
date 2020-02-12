@@ -1,8 +1,8 @@
 <template>
     <div style="margin: 10px">
-        <v-text-field v-bind:value="value.title" v-on:input="emitInput('title', $event.target.value)" label="Video Title" style="font-size: 28px;"></v-text-field>
-        <v-text-field v-bind:value="value.text" v-on:input="emitInput('text', $event.target.value)" label="Video Text"></v-text-field>
-        <v-text-field v-bind:value="value.url" v-on:input="emitInput('url', $event.target.value)" label="Video URL"></v-text-field>
+        <v-text-field v-model="title" @input="emitInput('title')" label="Video Title" style="font-size: 28px;"></v-text-field>
+        <v-text-field v-model="text" @input="emitInput('text')" label="Video Text"></v-text-field>
+        <v-text-field v-model="url" @input="emitInput('url')" label="Video URL"></v-text-field>
     </div>
 </template>
 
@@ -11,14 +11,30 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 @Component({})
 class App extends Vue {
     @Prop({default: {}})
-    value: any //TODO: Remove explicit any
+    elementInfo: any //TODO: Remove explicit any
 
-    emitInput(key: string, newValue: string) {
-        this.value[key] = newValue;
-        this.$emit('input', this.value);
+    title: string = '';
+    text: string = '';
+    url: string = '';
+
+    emitInput(key: string) {
+        switch (key) {
+            case 'title':
+                this.$emit('input', key, this.title);
+                break;
+            case 'text':
+                this.$emit('input', key, this.text);
+                break;
+            case 'url':
+                this.$emit('input', key, this.url);
+                break;
+        }
     }
 
     mounted() {
+        this.title = this.elementInfo.title;
+        this.text = this.elementInfo.text;
+        this.url = this.elementInfo.url;
     }
 }
 export default App;

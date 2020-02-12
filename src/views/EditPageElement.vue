@@ -1,7 +1,7 @@
 <template>
     <div>
-        <component v-bind:is="childType" v-model="elementInfo"></component>
-        <v-btn style="background-color: #00aeef; color: white; float: right;" @click="saveElements()">Save Changes</v-btn>
+        <component v-bind:is="childType" :elementInfo="elementInfo" @input="updateElement"></component>
+        <v-btn style="background-color: #00aeef; color: white; float: right;" @click="saveElement()">Save Changes</v-btn>
     </div>
 </template>
 <style scoped>
@@ -27,9 +27,16 @@ class App extends Vue {
     elementInfo: any = {};
     childType: string = '';
 
+    updateElement(key: string, newValue: string) {
+        this.elementInfo[key] = newValue;
+    }
+
+    saveElement() {
+        console.log('SAVE', this.elementInfo);
+    }
+
     setElementInfo(elementInfo: any): void {
         this.elementInfo = elementInfo.elementInfo;
-        console.log('presh', elementInfo)
         this.childType = this.determineChildType(this.elementInfo.type);
     }
 
